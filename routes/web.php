@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('/menus', 'MenuController@index');
+Route::get('/menus/{id}', 'MenuController@show');
+Route::resource('/menus', 'MenuController');
+//Route::resource('photo', 'PhotoController');
