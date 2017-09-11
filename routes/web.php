@@ -19,3 +19,13 @@ Route::get('/', function () {
 Route::get('/menus/{id}', 'MenuController@show');
 Route::resource('/menus', 'MenuController');
 //Route::resource('photo', 'PhotoController');
+
+
+Route::get('/addProduct/{productId}', 'CartController@addItem');
+Route::get('/removeItem/{productId}', 'CartController@removeItem');
+Route::get('/cart', 'CartController@showCart');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

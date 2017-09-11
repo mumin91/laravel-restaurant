@@ -19,6 +19,8 @@
                                     <td>{!! $menu->menu_name !!}</td>
                                     <td>{!! $menu->menu_desc !!}</td>
                                     <td>{!! $menu->menu_rating !!}</td>
+                                     <td><button><a href="/addProduct/{{$menu->id}}" class="btn btn-success btn-product"><span class="fa fa-shopping-cart"></span> Buy</a></button></td>
+
                                 </tr>
                             @endforeach
                         </tbody>

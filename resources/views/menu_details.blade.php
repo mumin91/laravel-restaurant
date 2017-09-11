@@ -18,6 +18,7 @@
                                     <td>{!! $menu_details->menu_name !!}</td>
                                     <td>{!! $menu_details->menu_desc !!}</td>
                                     <td>{!! $menu_details->menu_rating !!}</td>
+                                    <td><button>Add to Cart</button></td>
                                 </tr>
                         </tbody>
                     </table>
