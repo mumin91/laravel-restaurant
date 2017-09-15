@@ -29,3 +29,11 @@ Route::get('/cart', 'CartController@showCart');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//Admin routes
+Route::get('/admin_register', 'AdminAuth\RegisterController@showRegistrationForm');
+Route::post('/admin_register', 'AdminAuth\RegisterController@register');
+Route::get('/admin_dashboard', function(){
+	return view('admin.dashboard');
+});
