@@ -14,10 +14,10 @@
                         </thead>
                         <tbody>
                                 <tr>
-                                    <td>{!! $menu_details->id !!} </td>
-                                    <td>{!! $menu_details->menu_name !!}</td>
-                                    <td>{!! $menu_details->menu_desc !!}</td>
-                                    <td>{!! $menu_details->menu_rating !!}</td>
+                                    <td>{!! $menu->id !!} </td>
+                                    <td>{!! $menu->menu_name !!}</td>
+                                    <td>{!! $menu->menu_desc !!}</td>
+                                    <td>{!! $menu->menu_rating !!}</td>
                                     <td><button>Add to Cart</button></td>
                                 </tr>
                         </tbody>
