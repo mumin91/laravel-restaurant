@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Category;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -15,9 +16,10 @@ class MenuController extends Controller
     public function index()
     {
         //Shows all menu
+        $categories = Category::all();
         $menus = Menu::all();
 
-        return view('menus', compact('menus'));
+        return view('menus', compact('menus', 'categories'));
     }
 
     

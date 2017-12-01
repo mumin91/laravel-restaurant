@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+@extends('layouts.main')
+@section('title', 'Your Cart')
+
+@section('content')
  
-
-
-                @foreach($items as $item)
+<div class="row">
+      <div class="col-md-10">
+        @foreach($items as $item)
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{$item->menu->menu_image}}" style="width: 100px; height: 72px;"> </a>
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{$item->menu->image}}" style="width: 100px; height: 72px;"> </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading"><a href="#">{{$item->menu->menu_name}}</a></h4>
+                                    <h4 class="media-heading"><a href="#">{{$item->menu->name}}</a></h4>
                                 </div>
                             </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
@@ -30,9 +28,6 @@
                 @endforeach
  
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
                     <td><h3>Total</h3></td>
                     <td class="text-right"><h3><strong>${{$total}}</strong></h3></td>
                 </tr>
@@ -52,7 +47,13 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</body>
-</html>
+          
+      </div>
+         
+</div>
+
+               
+                 
+                    
+                
+@endsection

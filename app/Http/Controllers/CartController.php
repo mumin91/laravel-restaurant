@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Cart;
 use App\CartItem;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
  
 use Illuminate\Http\Request;
@@ -138,4 +139,6 @@ class CartController extends Controller
     {
         //
     }
+
+
 }
