@@ -12,7 +12,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/view_menus') }}">Menus</a>
+              <a class="nav-link" href="{{ url('/menus') }}">Menus</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Services</a>
@@ -30,21 +30,28 @@
     </li>
       @else
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}"
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ Auth::user()->name }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     <a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">
         Logout
     </a>
-
-     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>
-</li>
+    <a class="dropdown-item" href="#">Dashboard</a>
+    <a class="dropdown-item" href="/cart">Menu Cart</a>
+  </div>
+</div>
+    </li>
+     
 @endif
           </ul>
         </div>
       </div>
     </nav>
+

@@ -48,11 +48,9 @@ class CartController extends Controller
         }
  
         $items = $cart->cartItem;
-       // echo $items;
-      //  break;
         $total=0;
         foreach($items as $item){
-            $total+=$item->menu->menu_price;
+            $total+=$item->menu->price;
         }
  
         return view('/cart',['items'=>$items,'total'=>$total]);

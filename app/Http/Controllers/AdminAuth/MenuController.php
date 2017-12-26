@@ -7,8 +7,8 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-
-
+use App\Http\Controllers\AdminAuth\Session;
+use Illuminate\Database\Query\Builder;
 class MenuController extends Controller
 {
 
@@ -26,7 +26,7 @@ class MenuController extends Controller
     {
         //
         $menus = Menu::all();
-        return view('admin.menus', compact('menus'));
+        return view('admin.menu.menus', compact('menus'));
     }
 
     /**
@@ -38,7 +38,7 @@ class MenuController extends Controller
     {
         //
         $categories = Category::all();
-        return view('admin.add_menu', compact('categories'));
+        return view('admin.menu.add_menu', compact('categories'));
       //  echo "Ok";
     }
 
@@ -62,7 +62,8 @@ class MenuController extends Controller
         
 
         $this->validate($request, [
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'name' => 'unique:menus'
         ]);
 
         //upload the image to the path
@@ -76,8 +77,8 @@ class MenuController extends Controller
         $menu->category = $request->category;
         $menu->image = $fileName;
         $menu->save();
-
-        return redirect('/menus/create');
+       // Session::flash('success', 'Event delete successfully!');
+        return redirect('/menus/create')->with('status', 'Menu successfully created');
     }
 
     /**
@@ -101,8 +102,8 @@ class MenuController extends Controller
     {
         //
         
-        $categories = Category::all();
-        return view('admin.update_menu', compact('menu', 'categories'));
+        $categories = Category::pluck('name');
+        return view('admin.menu.update_menu', compact('menu', 'categories'));
     }
 
     /**
@@ -112,23 +113,19 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, $id)
     {
 
         //
-        $req = $request->all();
+       // $req = $request->all();
         
-$menu = Menu::where('id', $request->id);
-        
-
-       //dd($req);
-        //dd($menu);
-      //  break;
-        
+$menu = Menu::find($id);
+ // dd($menu);
+  //break;      
 
          if($request->hasFile('image')) {
 
-           Storage::delete($menu->image);
+          // Storage::delete($menu->image);
 
 
             //Setting up imamge saving path
@@ -141,7 +138,8 @@ $menu = Menu::where('id', $request->id);
         
 
         $this->validate($request, [
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'name' => 'unique:menus'
         ]);
 
         //upload the image to the path
@@ -164,7 +162,7 @@ $menu = Menu::where('id', $request->id);
         $menu->category = $request->category;
         
         $menu->save();
-        return redirect('/menus/update/{$menu->id}');
+        return redirect('/menus/update/'.$id);
     }
 
     /**
@@ -182,7 +180,7 @@ $menu = Menu::where('id', $request->id);
         
         //delete the menu from database
         Menu::destroy($menu->id);
-        return redirect('/menus');
+        return redirect('/all_menus');
 
     }
 }

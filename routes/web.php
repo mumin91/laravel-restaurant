@@ -15,10 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/menus', 'MenuController@index');
-Route::get('/view_menus/{menu}', 'MenuController@show');
-Route::resource('/view_menus', 'MenuController');
-//Route::resource('photo', 'PhotoController');
+
+Route::resource('menus', 'MenuController');
 
 
 Route::get('/addProduct/{productId}', 'CartController@addItem');
@@ -27,6 +25,9 @@ Route::get('/cart', 'CartController@showCart');
 
 
 Auth::routes();
+
+Route::get('/redirect', 'Auth\LoginController@redirectToFacebook');
+Route::get('/callback', 'Auth\LoginController@callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -57,10 +58,10 @@ Route::post('add_menu', 'AdminAuth\MenuController@store');
 Route::post('update_menu', 'AdminAuth\MenuController@edit');
 Route::post('delete_menu', 'AdminAuth\MenuController@delete');*/
 //Route::resource('menus', 'AdminAuth\MenuController');
-Route::get('/menus', 'AdminAuth\MenuController@index');
+Route::get('/all_menus', 'AdminAuth\MenuController@index');
 Route::get('menus/create', 'AdminAuth\MenuController@create');
 Route::post('/menus', 'AdminAuth\MenuController@store');
 Route::get('/menus/delete/{menu}', 'AdminAuth\MenuController@destroy');
 Route::get('/menus/update/{menu}', 'AdminAuth\MenuController@edit');
-Route::post('/menus/update', 'AdminAuth\MenuController@update');
+Route::put('/menu/{menu}', 'AdminAuth\MenuController@update');
 });

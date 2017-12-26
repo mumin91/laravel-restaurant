@@ -19,7 +19,7 @@ class MenuController extends Controller
         $categories = Category::all();
         $menus = Menu::all();
 
-        return view('menus', compact('menus', 'categories'));
+        return view('menus.index', compact('menus', 'categories'));
     }
 
     
@@ -35,7 +35,7 @@ class MenuController extends Controller
     public function show(Menu $menu)
     {
         
-        return view('menu_details', compact('menu'));
+        return view('menus.show', compact('menu'));
         
     }
 

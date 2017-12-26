@@ -2,18 +2,18 @@
 
 @section('content')
 
-<div class="container col-md-4">
-
-      <form class="form-signin" method="POST" action="{{ route('login') }}">
-         {{ csrf_field() }}
-        <h2 class="form-signin-heading text-center" style="padding-top: 40px">Sign Into Your Account</h2>
-
-       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="sr-only control-label">E-Mail Address</label>
-
-                            <div>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>
-
+<div class="container" class="col-md-4">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -21,13 +21,10 @@
                                 @endif
                             </div>
                         </div>
-
-        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="sr-only control-label" >Password</label>
-
-                            <div>
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
-
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -35,8 +32,7 @@
                                 @endif
                             </div>
                         </div>
-
-         <div class="form-group">
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
@@ -45,26 +41,31 @@
                                 </div>
                             </div>
                         </div>
-
-<div class="form-group">
-                            <div>
-                                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link text-center" href="{{ route('password.request') }}">
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
                         </div>
-      </form>
-
+                        <br />
+                        <p style="margin-left:265px">OR</p>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                              <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                            </div>
+                        </div>
+                        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-
-
+</div>
 
   
 
