@@ -52,12 +52,6 @@ Route::get('/admin_dashboard', function(){
 	return view('admin.dashboard');
 });
 Route::post('admin_logout', 'AdminAuth\LoginController@logout');
-
-/*Route::get('add_menu', 'AdminAuth\MenuController@showAddMenuForm');
-Route::post('add_menu', 'AdminAuth\MenuController@store');
-Route::post('update_menu', 'AdminAuth\MenuController@edit');
-Route::post('delete_menu', 'AdminAuth\MenuController@delete');*/
-//Route::resource('menus', 'AdminAuth\MenuController');
 Route::get('/all_menus', 'AdminAuth\MenuController@index');
 Route::get('menus/create', 'AdminAuth\MenuController@create');
 Route::post('/menus', 'AdminAuth\MenuController@store');

@@ -39,7 +39,7 @@ class CartController extends Controller
     }
  
     public function showCart(){
-        $cart = Cart::where('user_id',Auth::user()->id)->first();
+        $cart = Cart::where('user_id',sAuth::user()->id)->first();
  
         if(!$cart){
             $cart =  new Cart();

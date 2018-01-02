@@ -1,63 +1,57 @@
-@extends('admin.layout')
-
+@extends('admin.master')
+@section('title', 'Update Menu')
 @section('content')
 
-{!! Form::model($menu,['url' => '/menu/'.$menu->id, 'method' => 'PUT', 'files'=>true]) !!}
+<div class="container">
 
-      <img src="{{ asset($menu->image) }}" height="150" />
-      <div class="form-group">
-         <label for="image">Image File</label>
-         {!! Form::file('image',null,['class'=>'form-control']) !!}
-      </div>
-
-      <div class="form-group">
-         <label for="name">Caption</label>
+      {!! Form::model($menu,['url' => '/menu/'.$menu->id, 'method' => 'PUT', 'files'=>true]) !!}
+      <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+         <label for="name">Name</label>
          {!! Form::text('name',null,['class'=>'form-control']) !!}
       </div>
+   </div>
 
+   <div class="col-md-4">
       <div class="form-group">
-         <label for="category">Caption</label>
-         {!! Form::select('category',$categories, $menu->category, ['class'=>'form-control']) !!}
+         <label for="category">Category</label>
+         {!! Form::select('category', $categories, $menu->category, ['class'=>'form-control']) !!}
       </div>
+   </div>
 
-      Form::select('size', ['L' => 'Large', 'S' => 'Small']);
-
-      <div class="form-group">
-         <label for="price">Caption</label>
-         {!! Form::text('price',null,['class'=>'form-control']) !!}
-      </div>
-
+   <div class="col-md-8">
       <div class="form-group">
          <label for="description">Description</label>
          {!! Form::textarea('description',null,['class'=>'form-control']) !!}
       </div>
-
-      <button type="submit" class="btn btn-primary">Save</button>
-      <a href="{{ url('/all_menus') }}" class="btn btn-warning">Cancel</a>
-
-   {!! Form::close() !!}
+   </div>
 
 
+   <div class="col-md-4">
+    <div class="form-group">
+      <label for="price">Caption</label>
+      {!! Form::text('price',null,['class'=>'form-control']) !!}
+   </div>
+</div>
+
+<div class="col-md-8">
+   <div class="form-group">
+      <img src="{{ asset('/storage/images')."/".$menu->image }}" height="150">
+      <label for="image">Image File</label>
+      {!! Form::file('image',null,['class'=>'form-control']) !!}
+   </div>
+</div>
+
+<div class="col-md-4">
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="{{ url('/all_menus') }}" class="btn btn-warning">Cancel</a>
+</div>
+
+</div>
+{!! Form::close() !!}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 @endsection

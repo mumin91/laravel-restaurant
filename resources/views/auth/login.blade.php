@@ -2,12 +2,9 @@
 
 @section('content')
 
-<div class="container" class="col-md-4">
+<div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
+        <div class="col-md-8">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -59,14 +56,11 @@
                               <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
                             </div>
                         </div>
-                        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
+    
   
 
 @endsection

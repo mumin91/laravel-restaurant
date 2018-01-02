@@ -1,5 +1,5 @@
-@extends('admin.layout')
-
+@extends('admin.master')
+@section('title', 'Dashboard')
 @section('content')
 <div class="container">
     <div class="row">
@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Greetings.. Seller
+                    Greetings.. Admin
                 </div>
             </div>
         </div>

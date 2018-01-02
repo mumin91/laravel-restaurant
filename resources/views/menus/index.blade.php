@@ -13,7 +13,7 @@
           </a>
         </div>
         <div class="col-md-5">
-          <h3>{{$menu->name}} | Price:{{$menu->price}}</h3>
+          <h3>{{$menu->name}} | Price: {{$menu->price}} BDT</h3>
           <p>{{$menu->description}}</p>
           <a class="btn btn-primary" href="/menus/{{$menu->id}}">View Details</a>
           <a href="/addProduct/{{$menu->id}}" class="btn btn-primary">Add to Menu List</a>

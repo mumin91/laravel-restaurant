@@ -101,7 +101,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         //
-        
+
         $categories = Category::pluck('name');
         return view('admin.menu.update_menu', compact('menu', 'categories'));
     }
@@ -116,43 +116,33 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
 
-        //
-       // $req = $request->all();
-        
-$menu = Menu::find($id);
- // dd($menu);
-  //break;      
 
-         if($request->hasFile('image')) {
+        $menu = Menu::find($id);
 
-          // Storage::delete($menu->image);
+
+        if($request->hasFile('image')) {
+
 
 
             //Setting up imamge saving path
-        $destinationPath = storage_path('app/public/images');
+            $destinationPath = storage_path('app/public/images');
 
-        $extension = $request->file('image')->getClientOriginalExtension();
+            $extension = $request->file('image')->getClientOriginalExtension();
 
         //Setting up image name while saving
-        $fileName = $request->name.".".$extension;
-        
+            $fileName = $request->name.".".$extension;
 
-        $this->validate($request, [
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'name' => 'unique:menus'
-        ]);
+
+            $this->validate($request, [
+                'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'name' => 'unique:menus'
+            ]);
 
         //upload the image to the path
-        $request->file('image')->move($destinationPath, $fileName);
+            $request->file('image')->move($destinationPath, $fileName);
 
-        $menu->image = $fileName;
+            $menu->image = $fileName;
         }
-
-
-        
-        
-
-        
         
         
         //$menu = new Menu;
@@ -162,7 +152,7 @@ $menu = Menu::find($id);
         $menu->category = $request->category;
         
         $menu->save();
-        return redirect('/menus/update/'.$id);
+        return redirect('/menus/update/'.$id)->with('status', 'Menu Updated');
     }
 
     /**
@@ -175,12 +165,12 @@ $menu = Menu::find($id);
     {
         //deleting the image of menu from directory
        // if(file_exists(storage_path('app/public/images/').$menu->image)
-             Storage::delete('public/images/'.$menu->image);   
-            
-        
-        //delete the menu from database
-        Menu::destroy($menu->id);
-        return redirect('/all_menus');
+       Storage::delete('public/images/'.$menu->image);   
 
-    }
+
+        //delete the menu from database
+       Menu::destroy($menu->id);
+       return redirect('/all_menus');
+
+   }
 }

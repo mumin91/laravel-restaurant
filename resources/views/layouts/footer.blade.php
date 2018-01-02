@@ -2,20 +2,8 @@
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Demo Restaurant {{date("Y")}}</p>
       </div>
-      <!-- /.container -->
-    </footer>
-
- {{--   <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script type="text/javascript" src="public/js/jquery.min.js"></script>
-    <script type="text/javascript" src="public/js/tether.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/popper.min.js"></script>
-    <script type="text/javascript" src="public/js/bootstrap.min.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>--}}
-
+    
+  </footer>
 
 
  <!-- Optional JavaScript -->
@@ -42,5 +30,3 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
- </body>
- </html>
