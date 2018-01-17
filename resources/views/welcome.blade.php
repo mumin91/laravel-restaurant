@@ -17,7 +17,7 @@
             <div class="col-sm pull-sm-4 col-md pull-md-3">
                 <div class="media">
                     <img class="d-flex mr-3 img-thumbnail align-self-center"
-                         src="img/uthappizza.png" alt="Uthappizza">
+                         src="https://drop.ndtv.com/albums/COOKS/pasta-vegetarian/pastaveg_640x480.jpg" alt="Uthappizza">
                     <div class="media-body">
                         <h2 class="mt-0">Uthappizza<span class="badge badge-pill badge-default">$4.99</span></h2>
                         <p class="hidden-xs-down">A unique combination of Indian Uthappam (pancake) and

@@ -30,7 +30,7 @@
 
    <div class="col-md-4">
     <div class="form-group">
-      <label for="price">Caption</label>
+      <label for="price">Price</label>
       {!! Form::text('price',null,['class'=>'form-control']) !!}
    </div>
 </div>
