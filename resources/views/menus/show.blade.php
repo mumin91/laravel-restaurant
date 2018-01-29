@@ -32,7 +32,8 @@
         </div>
         <!-- /.row -->
 
-
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="This is an awesome menu. Did you try it?! " data-hashtags="{{$menu->name}}" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<a href="https://twitter.com/intent/tweet?button_hashtag={{$menu->name}}&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #{{$menu->name}}</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <div class="fb-like" data-href="http://localhost:8000/menus/{{$menu->id}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
 <div class="fb-comments" data-href="http://localhost:8000/menus/{{$menu->id}}" data-numposts="5"></div>

@@ -1,9 +1,8 @@
 @extends('admin.master')
 @section('title', 'Admin Login')
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+<div class="container" style="padding-top: 90px; padding-bottom:90px">
             <form role="form" method="POST" action="{{ url('/admin_login') }}">
             {{ csrf_field() }}
 
@@ -57,8 +56,6 @@
                 </div>
             </div>
         </form>
-        </div>
-    </div>
+       
 </div>
-
-@endsections
+@endsection

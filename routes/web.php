@@ -37,8 +37,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Logged in admin cannot access or send requests these pages
 Route::group(['middleware' => 'authenticated_admin'], function()
 {
-Route::get('/admin_register', 'AdminAuth\RegisterController@showRegistrationForm');
-Route::post('/admin_register', 'AdminAuth\RegisterController@register');
+
 Route::get('admin_login', "AdminAuth\LoginController@showLoginForm");
 Route::post('admin_login', 'AdminAuth\LoginController@login');
 });
@@ -51,6 +50,8 @@ Route::group(['middleware' => 'guest_admin'], function()
 Route::get('/admin_dashboard', function(){
 	return view('admin.dashboard');
 });
+Route::get('/admin_register', 'AdminAuth\RegisterController@showRegistrationForm');
+Route::post('/admin_register', 'AdminAuth\RegisterController@register');
 Route::post('admin_logout', 'AdminAuth\LoginController@logout');
 Route::get('/all_menus', 'AdminAuth\MenuController@index');
 Route::get('menus/create', 'AdminAuth\MenuController@create');
