@@ -39,17 +39,17 @@
 <div class="fb-comments" data-href="http://localhost:8000/menus/{{$menu->id}}" data-numposts="5"></div>
 
         <!-- Related Projects Row -->
-        <h3 class="my-4">Related Projects</h3>
+        <h3 class="my-4">You may also like</h3>
 
         <div class="row">
 
-            @for ($i=0; $i<4; $i++)
+            @foreach($interested as $interest)
             <div class="col-md-3 col-sm-6 mb-4">
-                <a href="#">
-                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                <a href="/menus/{{$interest->id}}">
+                    <img class="img-fluid" src="{{ asset('/storage/images')."/".$interest->image }}" alt="">
                 </a>
             </div>
-            @endfor
+            @endforeach
 
 
 

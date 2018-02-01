@@ -34,8 +34,8 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        
-        return view('menus.show', compact('menu'));
+         $interested = Menu::where('id', '!=', $menu)->get()->random(2);
+        return view('menus.show', compact('menu','interested'));
         
     }
 
