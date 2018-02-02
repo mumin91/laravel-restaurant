@@ -25,7 +25,7 @@
 					<a class="nav-link" href="{{ url('/menus/create') }}">Add Menu</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">View Orders</a>
+					<a class="nav-link" href="{{ url('/orders') }}">View Orders</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/admin_register') }}">Register Admin</a>

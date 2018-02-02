@@ -59,4 +59,6 @@ Route::post('/menus', 'AdminAuth\MenuController@store');
 Route::get('/menus/delete/{menu}', 'AdminAuth\MenuController@destroy');
 Route::get('/menus/update/{menu}', 'AdminAuth\MenuController@edit');
 Route::put('/menu/{menu}', 'AdminAuth\MenuController@update');
+
+Route::get('/orders', 'AdminAuth\OrderController@index');
 });
