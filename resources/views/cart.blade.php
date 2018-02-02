@@ -60,7 +60,7 @@
                         <a href="/menus"> <button type="button" class="btn btn-default">
                                 <span class="fa fa-shopping-cart"></span> Continue Adding Menu
                             </button>
-                        </a></td>
+                    </a></td>
                     <td>
                         <button type="button" class="btn btn-success">
                             Place Order <span class="fa fa-play"></span>
