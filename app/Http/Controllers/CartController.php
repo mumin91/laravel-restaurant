@@ -19,6 +19,8 @@ class CartController extends Controller
         $this->middleware('auth');
     }
 
+     
+
      public function addItem ($menuId){
  
         $cart = Cart::where('user_id',Auth::user()->id)->first();
