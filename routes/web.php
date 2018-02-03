@@ -18,12 +18,7 @@ Route::get('/', function () {
 
 Route::resource('menus', 'MenuController');
 
-//Route::resource('cart', 'CartController', ['only' => ['index', 'store', 'update', 'destroy']]);
 
-
-
-//Route::get('/addProduct/{productId}', 'CartController@addItem');
-//Route::get('/removeItem/{productId}', 'CartController@removeItem');
 Route::get('/cart', 'CartController@index');
 
 Route::get('/dashboard', function() {
@@ -62,6 +57,8 @@ Route::group(['middleware' => 'authenticated_admin'], function()
 
 Route::get('admin_login', "AdminAuth\LoginController@showLoginForm");
 Route::post('admin_login', 'AdminAuth\LoginController@login');
+//Route::get('/admin_register', 'AdminAuth\RegisterController@showRegistrationForm');
+//Route::post('/admin_register', 'AdminAuth\RegisterController@register');
 });
 
 
