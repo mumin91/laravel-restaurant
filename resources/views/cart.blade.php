@@ -4,77 +4,83 @@
 @section('content')
 
 <div class="container">
- <div class="row">
-    <div class="col-sm-12 col-md-10 col-md-offset-1">
-        @empty($items)
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-        @endempty
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Menu</th>
-                    <th></th>
-                    <th class="text-center"></th>
-                    <th class="text-center">Total</th>
-                    <th> </th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($items as $item)
-                    <tr>
-                        <td class="col-sm-8 col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{ asset('/storage/images')."/".$item->menu->image}}" style="width: 100px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a>{{$item->menu->name}}</a></h4>
-                                </div>
-                            </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center"></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->menu->price}} BDT</strong></td>
-                        <td class="col-sm-1 col-md-1">
-                            <a href="/removeItem/{{$item->id}}"> <button type="button" class="btn btn-danger">
-                                    <span class="fa fa-remove"></span> Remove
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
- 
-                <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td><h3>Total</h3></td>
-                    <td class="text-right"><h4><strong>{{$total}} BDT</strong></h4></td>
-                </tr>
-                <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>
-                        <a href="/menus"> <button type="button" class="btn btn-default">
-                                <span class="fa fa-shopping-cart"></span> Continue Adding Menu
-                            </button>
-                    </a></td>
-                    <td>
-                        <button type="button" class="btn btn-success">
-                            Place Order <span class="fa fa-play"></span>
-                        </button></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
 
+    @if(Session::has('status'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ Session::get('status') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
+     
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">Menu</td>
+              <td class="description">Description</td>
+              <td class="price">Price</td>
+              <td class="quantity">Quantity</td>
+              <td class="total">Sub-Total</td>
+              <td></td>
+            </tr>
+          </thead>
+
+          @foreach(Cart::content() as $menu)
+
+          <tbody>
+            <tr>
+              <td class="cart_product">
+                <a href=""><img src="{{ asset('/storage/images')."/".$menu->model->image }}" alt="" height="100px" width="100px"></a>
+              </td>
+              <td class="cart_description">
+                <h4><a href="">{{ $menu->name }}</a></h4>
+              </td>
+              <td class="cart_price">
+                <p>BDT {{$menu->price}}</p>
+              </td>
+              <td class="cart_quantity">
+                <div class="cart_quantity_button">
+                   <input title="qty" id="qty" class="email input-text qty text" value="{{ $menu->qty }}" type="text">
+                </div>
+              </td>
+              <td class="cart_total">
+                <p class="cart_total_price">BDT {{ $menu->subtotal }}</p> 
+              </td>
+              <td class="cart_update">
+                     <a href="{{ route('cart.update',['id' =>$menu->rowId, 'qty' =>$menu->qty]) }}""><button class="btn btn-warning">Update</button></a>
+              </td>
+              <td class="cart_delete">
+                     <a href="{{ route('cart.delete',['id' =>$menu->rowId]) }}" class="product-del remove" title="Delete"><button class="btn btn-danger">Delete</button></a>
+              </td>
+            </tr>
+            <tr>
+              @endforeach
+       <th class="text-right">Shipping</th>
+       <td class="text-right">BDT 50</td>
+     </tr>
+            <tr>
+       <th class="text-right">Total</th>
+       <td class="text-right"><b>{{ Cart::subtotal() + 50 }}</b></td>
+     </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <div align="center">
+       
+          <a href="/menus" class="product-del remove" title="Delete"><button class="btn btn-lg btn-secondary" style="margin-bottom: 20px">Continue Shopping</button></a>
+        <a href="/order/create" class="product-del remove" title="Delete"><button class="btn btn-lg btn-success" style="margin-bottom: 20px">Place Order</button></a>
+        
+        
+      </div>
     </div>
-</div>
-</div>
 
 
+  
 
 
 
