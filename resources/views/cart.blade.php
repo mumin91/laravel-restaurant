@@ -49,7 +49,7 @@
                 <p class="cart_total_price">BDT {{ $menu->subtotal }}</p> 
               </td>
               <td class="cart_update">
-                     <a href="{{ route('cart.update',['id' =>$menu->rowId, 'qty' =>$menu->qty]) }}""><button class="btn btn-warning">Update</button></a>
+                     <a href="{{ route('cart.update',['id' =>$menu->rowId, 'qty' =>$menu->qty]) }}"><button class="btn btn-warning">Update</button></a>
               </td>
               <td class="cart_delete">
                      <a href="{{ route('cart.delete',['id' =>$menu->rowId]) }}" class="product-del remove" title="Delete"><button class="btn btn-danger">Delete</button></a>

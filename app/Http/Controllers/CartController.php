@@ -48,9 +48,7 @@ class CartController extends Controller
     {
         //
     $menu = Menu::find($item);
-   // dd($request);
-   // dd($menu);
-    //break;
+   
        $cartItem =  Cart::add([
             'id'    => $menu->id,
             'name'  => $menu->name,
@@ -91,14 +89,14 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $qty)
+    public function update(Request $request, $id)
     {
         //
         //dd($qty);
-      dd($request);
       dd($id);
+     // dd($id);
          break;
-         $r = Cart::update($id, $request->qty);
+         //$r = Cart::update($id, $request->qty);
          
         Session::flash('status', 'Product quantity updated');
         return redirect()->back();

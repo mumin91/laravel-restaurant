@@ -41,7 +41,7 @@ Route::get('/cart/delete/{item}', [
     'as'   => 'cart.delete'
 ]);
 
-Route::get('/cart/update/{item}/{qty}', [
+Route::get('/cart/update/{item}', [
     'uses' => 'CartController@update',
     'as'   => 'cart.update'
 ]);
