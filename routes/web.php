@@ -18,11 +18,18 @@ Route::get('/', function () {
 
 Route::resource('menus', 'MenuController');
 
+//Route::resource('cart', 'CartController', ['only' => ['index', 'store', 'update', 'destroy']]);
 
-Route::get('/addProduct/{productId}', 'CartController@addItem');
-Route::get('/removeItem/{productId}', 'CartController@removeItem');
-Route::get('/cart', 'CartController@showCart');
 
+
+//Route::get('/addProduct/{productId}', 'CartController@addItem');
+//Route::get('/removeItem/{productId}', 'CartController@removeItem');
+Route::get('/cart', 'CartController@index');
+
+Route::get('/dashboard', function() {
+    //
+    return view('dashboard');
+});
 
 Auth::routes();
 
@@ -31,6 +38,21 @@ Route::get('/callback', 'Auth\LoginController@callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//Cart 
+Route::get('/cart/{item}', 'CartController@store');
+Route::get('/cart/delete/{item}', [
+    'uses' => 'CartController@destroy',
+    'as'   => 'cart.delete'
+]);
+
+Route::get('/cart/update/{item}/{qty}', [
+    'uses' => 'CartController@update',
+    'as'   => 'cart.update'
+]);
+
+
+Route::get('order/create', 'OrderController@store');
 
 //Admin routes
 
@@ -59,6 +81,5 @@ Route::post('/menus', 'AdminAuth\MenuController@store');
 Route::get('/menus/delete/{menu}', 'AdminAuth\MenuController@destroy');
 Route::get('/menus/update/{menu}', 'AdminAuth\MenuController@edit');
 Route::put('/menu/{menu}', 'AdminAuth\MenuController@update');
-
 Route::get('/orders', 'AdminAuth\OrderController@index');
 });

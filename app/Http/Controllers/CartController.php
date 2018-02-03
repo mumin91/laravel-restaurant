@@ -1,68 +1,117 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Cart;
-use App\CartItem;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
- 
+
 use Illuminate\Http\Request;
- 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+
+use App\Menu;
+
+use Session;
+
+use Cart;
 
 class CartController extends Controller
 {
-
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
+        //
+        return view('cart');
     }
 
-     
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+         
+    }
 
-     public function addItem ($menuId){
- 
-        $cart = Cart::where('user_id',Auth::user()->id)->first();
- 
-        if(!$cart){
-            $cart =  new Cart();
-            $cart->user_id=Auth::user()->id;
-            $cart->save();
-        }
- 
-        $cartItem  = new Cartitem();
-        $cartItem->menu_id=$menuId;
-        $cartItem->cart_id= $cart->id;
-        $cartItem->save();
- 
-        return redirect('/cart');
- 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, $item)
+    {
+        //
+    $menu = Menu::find($item);
+   // dd($request);
+   // dd($menu);
+    //break;
+       $cartItem =  Cart::add([
+            'id'    => $menu->id,
+            'name'  => $menu->name,
+            'qty'   => 1,
+            'price' =>$menu->price
+        ]);
+       Cart::associate($cartItem->rowId, 'App\Menu');  // Display an image to cart Page
+    Session::flash('status', 'Product added to cart');
+       return redirect('/cart');
     }
- 
-    public function showCart(){
-        $cart = Cart::where('user_id',Auth::user()->id)->first();
- 
-        if(!$cart){
-            $cart =  new Cart();
-            $cart->user_id=Auth::user()->id;
-            $cart->save();
-        }
- 
-        $items = $cart->cartItem;
-        $total=0;
-        foreach($items as $item){
-            $total+=$item->menu->price;
-        }
- 
-        return view('/cart',['items'=>$items,'total'=>$total]);
-    }
- 
-    public function removeItem($id){
- 
-        CartItem::destroy($id);
-        return redirect('/cart');
-    }
- 
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id, $qty)
+    {
+        //
+        //dd($qty);
+      dd($request);
+      dd($id);
+         break;
+         $r = Cart::update($id, $request->qty);
+         
+        Session::flash('status', 'Product quantity updated');
+        return redirect()->back();
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+         Cart::remove($id);
+        Session::flash('status', 'Product removed from cart');
+        return redirect()->back();
+    }
 }

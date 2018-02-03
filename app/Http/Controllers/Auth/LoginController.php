@@ -70,14 +70,35 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user)
     {
-        $authUser = User::where('provider_id', $user->id)->first();
-        if ($authUser) {
-            return $authUser;
+        $account = Facebook::whereProvider('facebook')
+            ->whereProviderUserId($user->getId())
+            ->first();
+
+        if ($account) {
+            return $account->user;
+        } else {
+
+            $account = new Facebook([
+                'provider_user_id' => $user->getId(),
+                'provider' => 'facebook'
+            ]);
+
+            $user = User::whereEmail($user->getEmail())->first();
+
+            if (!$user) {
+
+                $user = User::create([
+                    'email' => $user->getEmail(),
+                    'name' => $user->getName(),
+                ]);
+            }
+
+            $account->user()->associate($user);
+            $account->save();
+
+            return $user;
+
         }
-        return User::create([
-            'name'     => $user->name,
-            'email'    => $user->email,
-            'provider_id' => $user->id
-        ]);
+
     }
 }
